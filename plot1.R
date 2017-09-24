@@ -1,6 +1,6 @@
 source('loadData.R')
 
-data <- loadDataset()
+data <- loadData()
 png('plot1.png')
 hist(
     data$Global_active_power, 
