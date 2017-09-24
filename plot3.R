@@ -6,6 +6,7 @@ plot(
     data$DateTime,
     data$Sub_metering_1,
     type = 'l',
+    xlab = NA,
     ylab = "Energy sub metering"
 )
 lines(
