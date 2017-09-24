@@ -9,10 +9,18 @@ DEFAULT_URL <- paste0(
 ZIPFILENAME <- "household_power_consumption.zip"
 DATAFILENAME <- "household_power_consumption.txt"
 
-loadData <- function(url = DEFAULT_URL) {
-    download.file(url, ZIPFILENAME)
-    unzip(ZIPFILENAME, files=c(DATAFILENAME))
-    data <- fread(DATAFILENAME, na.strings="?")
+loadData <- function(
+    url = DEFAULT_URL,
+    zipfilename = ZIPFILENAME,
+    datafilename = DATAFILENAME
+) {
+    if (!file.exists(zipfilename)) {
+        download.file(url, zipfilename)
+    }
+    if (!file.exists(datafilename)) {
+        unzip(zipfilename, files=c(datafilename))
+    }
+    data <- fread(datafilename, na.strings="?")
     data[, DateTime := dmy_hms(paste(Date, Time))]
     data[, c("Date", "Time") := NULL]
     data <- data[
