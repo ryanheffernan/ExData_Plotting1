@@ -3,11 +3,7 @@ source('loadData.R')
 data <- loadData()
 png('plot4.png', width = 480, height = 480)
 
-par(
-    mfrow=c(2,2),
-    cex.lab = 0.75,
-    cex.axis=0.75
-)
+par(mfrow=c(2,2))
 
 with(
     data, 
